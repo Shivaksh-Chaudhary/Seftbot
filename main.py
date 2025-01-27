@@ -7,8 +7,6 @@ import time
 import os
 import pickle
 
-from keep_alive import keep_alive
-keep_alive()
 
 #with open('token.txt' , 'r') as file:
 #    token = file.read().strip()
