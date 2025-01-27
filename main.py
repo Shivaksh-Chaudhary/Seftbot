@@ -18,8 +18,7 @@ bot = commands.Bot(command_prefix='s.' , self_bot = True)
 
 
 
-afkMode = False
-afkLogs = []
+
 
  # nigga
 
@@ -57,36 +56,7 @@ async def on_message(message):
         response = random.choice(responses)
         await message.channel.send(f"{active_responders[message.author.id]} {response}")
         
-
-@bot.event
-async def on_message(message):
-    if message.author != bot.user:
-        for word in notifyWords:
-    if afkMode == True:
-        if message.author != bot.user:
-            if message.author.id not in afkLogs:
-                if message.channel.type == discord.ChannelType.private:
-                    await message.channel.send("Sorry, I'm currently not available!"")
-
-                    log_message(
-                        "AFK Logs",
-                        f"DM from {message.author.name}#{message.author.discriminator}: {message.content}",
-                        Fore.YELLOW,
-                    )
-
-                    afkLogs.append(message.author.id)
-            else:
-                if message.channel.type == discord.ChannelType.private:
-                    log_message(
-                        "AFK Logs",
-                        f"{message.author.name}#{message.author.discriminator}: {message.content}",
-                        Fore.YELLOW,
-                    )
-        else:
-            await bot.process_commands(message)
-    else:
-        if message.author == bot.user:
-            await bot.process_commands(message)            
+        
         
         
     await bot.process_commands(message)
@@ -135,14 +105,7 @@ async def spam(ctx ,amount: int ,* , message:str):
         await ctx.send(message)
         
 help_message = (
-    "```ERROR PRESENTS\n"
-    "                  \n"
-    "                 \n"
-    
-    "MADE BY ERROR\n"
-    "                \n"
-    "                \n"
-    "PREFIX IS s.\n"
+    "```Impact Gaming\n"
     "                \n"
     "                \n"
     "COMMANDS ARE :-\n"
@@ -181,7 +144,7 @@ help_message = (
     "                  \n"
     "Smm - Mentions everyone in a server \n"
     "                       \n"
-    "More commands soon\n```")
+    "LOVE YOU <3\n```")
                 
         
    
@@ -420,35 +383,7 @@ async def dmm(ctx, amount: int):
     else:
         await ctx.send("This command can only be used in DMs.", delete_after=5)
         await asyncio.sleep(0.1)
-
-@bot.command(
-    description="Turns on AFK mode, which will automatically respond to DMs and log the messages."
-)
-async def afk(ctx):
-    global afkMode
-
-    if afkMode:
-        await ctx.message.edit(content=f":x: | AFK mode disabled.")
-
-        log_message("afk", "AFK mode enabled.", Fore.RED)
-
-        afkMode = False
-
-        afkLogs.clear()
-
-        await bot.change_presence(status=discord.Status.online)
-
-    else:
-        await ctx.message.edit(content=f":white_check_mark: | AFK mode enabled.")
-
-        log_message("afk", "AFK mode enabled.", Fore.RED)
-
-        afkMode = True
-
-        await bot.change_presence(status=discord.Status.idle)
-
-    await delete_after_timeout(ctx.message)
-    
+        
 bot.run(token=os.environ.get('token'))
 
     
