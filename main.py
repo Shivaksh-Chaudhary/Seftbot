@@ -14,7 +14,7 @@ import pickle
 
     
     
-bot = commands.Bot(command_prefix='s.' , self_bot = True)
+bot = commands.Bot(command_prefix='>' , self_bot = True)
 
 
 
@@ -45,8 +45,7 @@ responses = ["you looks so ass even your mom don't love you","you lifeless homel
 @bot.event
 async def on_ready():
     print ("Bot is ready")
-    print("Prefix is s.")
-    print("Made by ERROR")
+    print("Prefix is >")
     
 @bot.event
 async def on_message(message):
